@@ -29,7 +29,7 @@ def sift(result):
         found_rows = False
 
         # 筛选满足条件的行
-        excel_data[11] = pd.to_numeric(excel_data[11], errors='coerce')
+        excel_data[11] =  (excel_data[11], errors='coerce')
         filtered_rows = excel_data[(excel_data[0] == result) & (excel_data[11] < 9)]
 
         # 如果发现满足条件的行，赋值给filtered_rows，并执行相应的操作
@@ -61,3 +61,7 @@ def sift(result):
 
     # 关闭Excel Writer
     output_writer._save()
+
+import matplotlib.pyplot as plt
+
+plt.sav

@@ -3,7 +3,7 @@ import os
 
 import ezdxf
 
-print(os.listdir(os.getcwd()))
+# print(os.listdir(os.getcwd()))
 
 
 filePath = "C:\\Users\\demon\\Desktop\\work\\资料\\资料"
@@ -14,12 +14,16 @@ import pandas as pd
 startrow=2
 skiprows=startrow
 df = pd.read_excel(os.path.join(filePath,  network_element_files[0]),skiprows=3)
+print("read excel done")
+import sys
 
-keyword = "GXN-5G-10GE-JR067"
+keyword = sys.stdin.readline().strip()
+if keyword == "":
+    keyword = "GXN-5G-10GE-JR067"
 filtered_df = df[df["所属子网"].str.contains(keyword)]
 
 selected_column_values = filtered_df["网元名称"].tolist()
-# print(selected_column_values)
+print("selected_column_values = ",selected_column_values)
 
 link_road_files = [filename for filename in os.listdir(filePath) if "链路报表" in filename]
 # link_road_files
@@ -46,6 +50,7 @@ data = {
 
 df = pd.DataFrame(data)
 
+print("创建无向图")
 # 创建无向图a
 G = nx.Graph()
 
@@ -61,6 +66,7 @@ nx.draw(G, pos, with_labels=True, node_size=1000, node_color="lightblue", font_s
 # plt.show()
 
 # 创建DXF图
+print("创建DXF图")
 doc = ezdxf.new()
 msp = doc.modelspace()
 
@@ -72,5 +78,6 @@ for node, pos in node_positions.items():
         neighbor_pos = node_positions[neighbor]
         msp.add_line(start=(pos[0], pos[1]), end=(neighbor_pos[0], neighbor_pos[1]), dxfattribs={'layer': 'Edges'})
 
+print("ready save file")
 # 保存DXF文件
-doc.saveas("topology1.dxf")
+doc.saveas("topology21.dxf")

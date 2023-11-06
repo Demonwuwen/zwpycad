@@ -5,21 +5,20 @@ import ezdxf
 
 # print(os.listdir(os.getcwd()))
 
-
 filePath = "C:\\Users\\demon\\Desktop\\work\\资料\\资料"
 # print(os.listdir(filePath))
 network_element_files = [filename for filename in os.listdir(filePath) if "网元报表" in filename]
 import pandas as pd
 
-startrow=2
-skiprows=startrow
+start_row = 2
+skiprows= start_row
 df = pd.read_excel(os.path.join(filePath,  network_element_files[0]),skiprows=3)
 print("read excel done")
-import sys
-
-keyword = sys.stdin.readline().strip()
-if keyword == "":
-    keyword = "GXN-5G-10GE-JR067"
+# import sys
+#
+# keyword = sys.stdin.readline().strip()
+# if keyword == "":
+keyword = "GXN-5G-10GE-JR067"
 filtered_df = df[df["所属子网"].str.contains(keyword)]
 
 selected_column_values = filtered_df["网元名称"].tolist()
@@ -48,6 +47,7 @@ data = {
     "宿网元": dest_net
 }
 
+print("data = ", data)
 df = pd.DataFrame(data)
 
 print("创建无向图")

@@ -45,11 +45,8 @@ def create_title(doc):
     block.add_text("专业负责人", dxfattribs={'style': 'OpenSans', 'height': 2.5, 'width': 0.7}).set_placement(
         (43, 24.5), align=TextEntityAlignment.LEFT)
 
-    block.add_text("图 号", dxfattribs={'style': 'OpenSans', 'height': 2.5, 'width': 0.7}).set_placement((83, 2),
-                                                                                                         align=TextEntityAlignment.LEFT)
-    block.add_text("中国移动通信集团设计院有限公司",
-                   dxfattribs={'style': 'OpenSans', 'height': 5, 'width': 0.7}).set_placement((92, 20.5),
-                                                                                              align=TextEntityAlignment.LEFT)
+    block.add_text("图 号", dxfattribs={'style': 'OpenSans', 'height': 2.5, 'width': 0.7}).set_placement((83, 2),  align=TextEntityAlignment.LEFT)
+    block.add_text("中国移动通信集团设计院有限公司",dxfattribs={'style': 'OpenSans', 'height': 5, 'width': 0.7}).set_placement((92, 20.5),align=TextEntityAlignment.LEFT)
     block.add_lwpolyline([
         (40, 0),
         (40, 30)
@@ -97,6 +94,7 @@ def create_document():
     # 'RED'、'YELLOW'、'GREEN'、'CYAN'、'BLUE'、'MAGENTA'
     doc.layers.add(name="outline_border", color=5, linetype="CONTINUOUS")
     doc.layers.add(name="border", linetype="CONTINUOUS", dxfattribs={'lineweight': 0.5})
+    doc.layers.add(name="origin_device", linetype="CONTINUOUS")
     doc.layers.add(name="new_device", color=1, linetype="CONTINUOUS")
     doc.layers.add(name="extension_device", color=6, linetype="CONTINUOUS")
     # 返回模型空间对象

@@ -1,6 +1,5 @@
 
 import os
-
 import ezdxf
 
 # print(os.listdir(os.getcwd()))

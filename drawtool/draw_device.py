@@ -4,7 +4,6 @@ from ezdxf.enums import TextEntityAlignment
 
 def create_device_block(doc, name):
     block = doc.blocks.new(name)
-
     block.add_lwpolyline([
         (0, 0),
         (0, 5.2),
